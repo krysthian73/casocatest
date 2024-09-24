@@ -2,6 +2,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAuth } from '../hooks/useAuth';
 import DarkModeToggle from '@/app/components/DarkModeToggle';
+import CustomInput from '../components/Input';
+import CustomButton from '../components/Button';
 
 type Inputs = {
   email: string;
@@ -29,48 +31,27 @@ export default function Login() {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 dark:text-gray-300 text-sm mb-2"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <input
-                className="w-full p-2 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
-                type="email"
-                id="email"
-                {...register('email', { required: 'Email é obrigatório' })}
-              />
-              {errors.email && (
-                <span className="text-red-500 text-sm">{errors.email.message}</span>
-              )}
-            </div>
+            <CustomInput
+              divClassName='mb-4'
+              label="Email"
+              type="email"
+              id="email"
+              register={register('email', { required: 'Email é obrigatório' })}
+              error={errors.email?.message}
+            />
 
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 dark:text-gray-300 text-sm mb-2"
-                htmlFor="password"
-              >
-                Senha
-              </label>
-              <input
-                className="w-full p-2 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
-                type="password"
-                id="password"
-                {...register('password', { required: 'Senha é obrigatória' })}
-              />
-              {errors.password && (
-                <span className="text-red-500 text-sm">{errors.password.message}</span>
-              )}
-            </div>
-
-            <button
+            <CustomInput
+              divClassName='mb-4'
+              label="Senha"
+              type="password"
+              id="password"
+              register={register('password', { required: 'Senha é obrigatória' })}
+              error={errors.password?.message}
+            />
+            <CustomButton
               type="submit"
-              className="w-full bg-primary text-white p-2 rounded hover:bg-secondary transition-colors"
-            >
-              Entrar
-            </button>
+              label="Entrar"
+            />
           </form>
         </div>
       </div>

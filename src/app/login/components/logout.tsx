@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "@/app/hooks/useAuth";
+import Image from "next/image";
 
 interface UserAvatarProps {
   image?: string;
@@ -36,10 +37,14 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ image, email }) => {
         className="flex items-center justify-start w-auto h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors px-2 gap-2"
       >
         {image ? (
-          <img
+          <Image
             src={image}
             alt="User Avatar"
-            className="w-full h-full rounded-full object-cover"
+            className="rounded-full object-cover"
+            width={40}
+            height={40}
+            quality={100}
+            objectFit="cover"
           />
         ) : (
           <FaUserCircle className="text-gray-500 dark:text-gray-400 text-xl" />
